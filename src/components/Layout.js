@@ -1,5 +1,7 @@
 import React from 'react';
 import Sidebar from "./Sidebar";
+import DepartmentTable from "./department/DepartmentTable";
+import EmployeeTable from "./employee/EmployeeTable";
 import {Route, Switch} from "react-router-dom";
 import 'react-table/react-table.css'
 
@@ -11,10 +13,10 @@ const Layout = () => (
       </div>
       <div className="col-md-10">
         <Switch>
-          <Route path="/dashboard/1" component={() => <div>Component1</div>}/>
+          <Route path="/dashboard/department" component={DepartmentTable}/>
         </Switch>
         <Switch>
-          <Route path="/dashboard/2" component={() => <div>Component2</div>}/>
+          <Route path="/dashboard/employees" component={EmployeeTable}/>
         </Switch>
       </div>
     </div>

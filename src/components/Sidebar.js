@@ -8,13 +8,13 @@ const Sidebar = (props) => {
   return (
       <ul className="list-group">
         <li className="list-group-item">
-          <NavLink to="/dashboard/1" className='side-bar-item' >
-            link1
+          <NavLink to="/dashboard/department" className='side-bar-item' >
+            Department
           </NavLink>
         </li>
           <li className="list-group-item">
-            <NavLink to="/dashboard/2" className='side-bar-item' >
-             link2
+            <NavLink to="/dashboard/employees" className='side-bar-item' >
+              Employee
             </NavLink>
           </li>
       </ul>
