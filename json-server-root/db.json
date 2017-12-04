@@ -1,0 +1,23 @@
+{
+  "employees": [
+    { "id": 1, "firstName": "json-server", "lastName": "typicode", "departmentId": "34" },
+    
+    { "id": 2, "firstName": "json-server", "lastName": "typicode", "departmentId": "34" },
+    
+    { "id": 3, "firstName": "json-server", "lastName": "typicode", "departmentId": "34" },
+    
+    { "id": 4, "firstName": "json-server", "lastName": "typicode", "departmentId": "34" }
+  ],
+  "departments": [
+    { "id": 1, "name": "Department name" },
+    
+    { "id": 2, "name": "Department name" },
+    
+    { "id": 3, "name": "Department name" },
+    
+    { "id": 4, "name": "Department name" },
+    
+    { "id": 5, "name": "Department name" }
+  ]
+
+}
