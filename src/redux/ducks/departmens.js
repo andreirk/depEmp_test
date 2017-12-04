@@ -65,13 +65,9 @@ export default function reducer(state = new ReducerRecord(), action) {
 
 export const stateSelector = state => state[moduleName]
 export const entitiesSelector = createSelector(stateSelector, state => state.entities)
-
 export const departmentListSelector = createSelector(entitiesSelector, entities => {
   console.log('---in selector--', entities)
   return entities.valueSeq().toArray()})
-export const selectedDepartmentsSelector = createSelector(entitiesSelector, selectionSelector, (entities, selection) =>
-    selection.map(uid => entities.get(uid))
-)
 
 /**
  * Action Creators

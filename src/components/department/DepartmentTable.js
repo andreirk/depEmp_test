@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+import {departmentListSelector, fetchAllDepartments} from "../../redux/ducks/departmens";
+import {connect} from "react-redux";
 
 
 class DepartmentTable extends Component {
 
+  componentDidMount(){
+    this.props.fetchAllDepartments();
+  }
 
   render() {
 
@@ -17,4 +22,8 @@ class DepartmentTable extends Component {
 DepartmentTable.propTypes = {};
 DepartmentTable.defaultProps = {};
 
-export default DepartmentTable
+export default connect((state) => {
+  return {
+    departments: departmentListSelector(state)
+  }
+}, {fetchAllDepartments}) (DepartmentTable);
