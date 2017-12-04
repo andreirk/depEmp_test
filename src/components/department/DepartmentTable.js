@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import {departmentListSelector, fetchAllDepartments, addDepartment} from "../../redux/ducks/departmens";
+import {
+  addDepartment,
+  chengeDepartmentName, departmentListSelector,
+  fetchAllDepartments
+} from "../../redux/ducks/departmens";
 import {connect} from "react-redux";
 import ReactTable from 'react-table'
 import NewDepartmentForm from "./NewDepartmentForm";
@@ -8,19 +12,15 @@ import NewDepartmentForm from "./NewDepartmentForm";
 class DepartmentTable extends Component {
   constructor(props) {
     super();
-    const { departments } = props
-    console.log('---in consturctuor--', departments)
-    this.state = {
-      data: departments
-    };
+
     this.renderEditable = this.renderEditable.bind(this);
   }
   componentDidMount(){
-    this.props.fetchAllDepartments();
+    const { departments } = this.props;
+    if(departments.length === 0) this.props.fetchAllDepartments();
   }
 
   renderEditable(cellInfo) {
-    console.log('---in render editagle--', cellInfo)
     const { departments } = this.props;
     return (
         <div
@@ -41,7 +41,6 @@ class DepartmentTable extends Component {
 
   render() {
 
-    const { data } = this.state;
     const { departments } = this.props;
     console.log('departmensts in render', departments)
     return (
@@ -77,4 +76,4 @@ export default connect((state) => {
   return {
     departments: departmentListSelector(state)
   }
-}, {fetchAllDepartments, addDepartment}) (DepartmentTable);
+}, {fetchAllDepartments,chengeDepartmentName, addDepartment}) (DepartmentTable);

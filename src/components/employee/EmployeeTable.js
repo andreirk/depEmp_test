@@ -8,21 +8,33 @@ import {departmentListSelector, fetchAllDepartments} from "../../redux/ducks/dep
 import NewEmployeeForm from "./NewEmployeeForm";
 import {connect} from "react-redux";
 import ReactTable from 'react-table'
+import {isNumeric} from "../../redux/ducks/utils";
 
 class EmployeeTable extends Component {
 
   componentDidMount(){
-    this.props.fetchAllEmployees();
-    this.props.fetchAllDepartments();
+    const { employees } = this.props;
+    const { departments } = this.props;
+
+    if(employees.length === 0) this.props.fetchAllEmployees();
+
+    if(departments.length === 0) this.props.fetchAllDepartments();
   }
 
   renderEditable = (cellInfo) => {
-    console.log('---in render editagle--', cellInfo)
     const { employees } = this.props;
+    const { departments } = this.props;
+    let department;
+    let columnName = employees[cellInfo.index][cellInfo.column.id]
+    if(isNumeric(columnName))  department =  departments.find(el => el.id === parseInt(columnName));
+    columnName = department ? department.name : columnName
+    const editable = cellInfo.column.id !== 'departmentId'
+
+
     return (
         <div
             style={{ backgroundColor: "#fafafa" }}
-            contentEditable
+            contentEditable={editable}
             suppressContentEditableWarning
             onBlur={e => {
               const data = [...employees];
@@ -33,7 +45,7 @@ class EmployeeTable extends Component {
               this.props.chengeEmployee( data);
             }}
             dangerouslySetInnerHTML={{
-              __html: employees[cellInfo.index][cellInfo.column.id]
+              __html: columnName
             }}
         />
     );
@@ -42,7 +54,6 @@ class EmployeeTable extends Component {
   render() {
 
     const { employees } = this.props;
-    console.log('emploees in render', employees)
     return (
         <div className="row">
           <div className="col-md-10">
