@@ -2,7 +2,7 @@ import {all, takeEvery, put, call, take, select} from 'redux-saga/effects'
 import {Record, OrderedMap, List, OrderedSet} from 'immutable'
 import {createSelector} from 'reselect'
 import {appName} from "../../config";
-import {departmentApi, employeeApi} from "../../api/api";
+import { employeeApi} from "../../api/api";
 import {generateId} from "./utils";
 
 
@@ -29,7 +29,6 @@ export const ReducerRecord = Record({
   loading: false,
   loaded: false,
   entities: new List([]),
-  selected: new OrderedSet([])
 })
 
 

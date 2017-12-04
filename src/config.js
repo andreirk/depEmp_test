@@ -20,4 +20,4 @@ export const fbConfig = {
   messagingSenderId: "333026057343"
 }
 
-export const DISPLAY_NAME = "RECALO"
+export const DISPLAY_NAME = "Departments & Employees"

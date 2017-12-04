@@ -26,10 +26,13 @@ class EmployeeTable extends Component {
     const { departments } = this.props;
     let department;
     let columnName = employees[cellInfo.index][cellInfo.column.id]
-    if(isNumeric(columnName))  department =  departments.find(el => el.id === parseInt(columnName));
+    if(isNumeric(columnName)) {
+        department =  departments.find(el => {
+          return el.id === parseInt(columnName)
+        })
+    }
     columnName = department ? department.name : columnName
     const editable = cellInfo.column.id !== 'departmentId'
-
 
     return (
         <div
@@ -39,9 +42,8 @@ class EmployeeTable extends Component {
             onBlur={e => {
               const data = [...employees];
               const row = cellInfo.index
-              const field = cellInfo.index
+              const field = cellInfo.column.id
               data[row][field] = e.target.innerHTML;
-
               this.props.chengeEmployee( data);
             }}
             dangerouslySetInnerHTML={{

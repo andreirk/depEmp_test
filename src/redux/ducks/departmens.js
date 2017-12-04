@@ -28,7 +28,6 @@ export const ReducerRecord = Record({
   loading: false,
   loaded: false,
   entities: new List([]),
-  selected: new OrderedSet([])
 })
 
 
