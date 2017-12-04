@@ -1,7 +1,8 @@
+import {all, takeEvery, put, call, take, select} from 'redux-saga/effects'
 import {Record, OrderedMap, List, OrderedSet} from 'immutable'
 import {createSelector} from 'reselect'
 import {appName} from "../../config";
-
+import {departmentApi} from "../../api/api";
 
 
 /**
@@ -104,3 +105,26 @@ export function addDepartment(payload) {
  * Sagas
  * */
 
+export function* fetchAllSaga() {
+
+  yield put({
+    type: FETCH_ALL_START
+  })
+
+  const snapshot = yield call(departmentApi.register)
+
+  console.log('--department fethc-', snapshot)
+
+  yield put({
+    type: FETCH_ALL_SUCCESS,
+    payload: snapshot
+  })
+}
+
+
+
+export function* saga() {
+  yield all([
+    takeEvery(FETCH_ALL_REQUEST, fetchAllSaga),
+  ])
+}
