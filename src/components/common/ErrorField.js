@@ -7,7 +7,7 @@ function ErrorField(props) {
       <div className="">
         <label>{label}</label>
         <input className="form-control" {...input} type={type}/>
-        {errorText}
+        {errorText && <div className="alert alert-danger">{errorText}</div>}
       </div>
   )
 }
