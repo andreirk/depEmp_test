@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {departmentListSelector, fetchAllDepartments} from "../../redux/ducks/departmens";
+import {departmentListSelector, fetchAllDepartments, addDepartment} from "../../redux/ducks/departmens";
 import {connect} from "react-redux";
 import ReactTable from 'react-table'
+import NewDepartmentForm from "./NewDepartmentForm";
 
 
 class DepartmentTable extends Component {
@@ -57,12 +58,12 @@ class DepartmentTable extends Component {
                   }
 
                 ]}
-                defaultPageSize={5}
+                defaultPageSize={10}
                 className="-striped -highlight"
             />
           </div>
           <div className="col-md-2">
-
+            <NewDepartmentForm onSubmit={this.props.addDepartment}/>
           </div>
         </div>
     );
@@ -76,4 +77,4 @@ export default connect((state) => {
   return {
     departments: departmentListSelector(state)
   }
-}, {fetchAllDepartments}) (DepartmentTable);
+}, {fetchAllDepartments, addDepartment}) (DepartmentTable);
