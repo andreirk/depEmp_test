@@ -12,7 +12,7 @@ class NewDepartmentForm extends Component {
         <div >
           <form onSubmit={this.props.handleSubmit}>
             <div className="form-group">
-              <Field  name="name" component={ErrorField}/>
+              <Field  name="name" label="Name" component={ErrorField}/>
             <div>
               <input type="submit" />
             </div>
