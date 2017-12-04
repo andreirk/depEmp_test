@@ -22,7 +22,7 @@ class NewEmployeeForm extends Component {
                 </Field>
               </div>
             <div>
-              <input type="submit" />
+              <button className="mt-2 btn btn-success btn-lg" type="submit" value="Submit">Add</button>
             </div>
             </div>
           </form>

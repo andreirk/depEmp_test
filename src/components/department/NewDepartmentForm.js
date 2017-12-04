@@ -11,10 +11,10 @@ class NewDepartmentForm extends Component {
     return (
         <div >
           <form onSubmit={this.props.handleSubmit}>
-            <div className="form-group">
+            <div className="form-group ">
               <Field  name="name" label="Name" component={ErrorField}/>
             <div>
-              <input type="submit" />
+              <button className="mt-2 btn btn-success btn-lg" type="submit" value="Submit">Add</button>
             </div>
             </div>
           </form>
