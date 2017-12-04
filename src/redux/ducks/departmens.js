@@ -3,6 +3,7 @@ import {Record, OrderedMap, List, OrderedSet} from 'immutable'
 import {createSelector} from 'reselect'
 import {appName} from "../../config";
 import {departmentApi} from "../../api/api";
+import {generateId} from "./utils";
 
 
 /**
@@ -51,7 +52,8 @@ export default function reducer(state = new ReducerRecord(), action) {
 
     case ADD_DEPARTMENT:
       const newEntities = state.entities.valueSeq().toArray()
-      newEntities.push({id: newEntities.length, name: payload.name})
+      const newId = generateId();
+      newEntities.push({id: newId, name: payload.name})
       return state.mergeIn(['entities'],  new List(newEntities))
 
     default:
@@ -108,8 +110,6 @@ export function* fetchAllSaga() {
   })
 
   const snapshot = yield call(departmentApi.register)
-
-  console.log('--department fethc-', snapshot)
 
   yield put({
     type: FETCH_ALL_SUCCESS,

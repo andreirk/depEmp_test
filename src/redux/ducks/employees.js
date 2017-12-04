@@ -3,6 +3,7 @@ import {Record, OrderedMap, List, OrderedSet} from 'immutable'
 import {createSelector} from 'reselect'
 import {appName} from "../../config";
 import {departmentApi, employeeApi} from "../../api/api";
+import {generateId} from "./utils";
 
 
 /**
@@ -52,8 +53,9 @@ export default function reducer(state = new ReducerRecord(), action) {
 
     case ADD_EMPLOYEE:
       const newEntities = state.entities.valueSeq().toArray()
+      const newId = generateId();
       newEntities.push({
-        id: newEntities.length,
+        id: newId,
         firstName: payload.firstName,
         lastName: payload.lastName,
         departmentId: payload.department
@@ -96,7 +98,6 @@ export function chengeEmployee(payload) {
 }
 
 export function addEmployee(payload) {
-  console.log('-----change emploi action', payload)
   return {
     type: ADD_EMPLOYEE,
     payload: payload
@@ -117,7 +118,6 @@ export function* fetchAllSaga() {
 
   const snapshot = yield call(employeeApi.register)
 
-  console.log('--department fethc-', snapshot)
 
   yield put({
     type: FETCH_ALL_SUCCESS,
